@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <b:comment>SEO Tags</b:comment>
+    <b:include data='blog' name='all-head-content' />
+    <b:comment>Page title fix</b:comment>
+    <title>
+        <b:eval expr='data:blog.pageName ? data:blog.pageName.escaped : data:blog.title.escaped' />
+    </title>
+    <b:comment>To have a consisten css</b:comment>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reseter.css" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&#38;display=swap" rel="stylesheet" />
+    <b:skin>
+        <![CDATA[
+            :root {--appbar:3.5rem;--sidebarwidth: max(16rem,(50vw - 26rem)); --faint: #a9acaa; --text1: #1f1f1f; --text2:#565658; --text3:#a9acaa; --hover:rgba(60,64,67,.08); --surface:#fafafa; --surface2:#efefef; --primary:#89b7ff; }
+            @media (prefers-color-scheme: dark) {:root {--faint: #353538; --text1: #e8e8e8; --text2:#dfdfdf; --text3:#d2d2d2; --hover:rgba(125,120,124,.08); --surface:#101010; --surface2:#1f1f1f; --primary:#0b57d0; }}
+            @media only screen and (min-width: 2401px){html {font-size: max(1vh , 1vw);}}
+            @media only screen and (max-width: 2400px) {html {font-size: 20px;}}
+            @media only screen and (max-width: 1900px) {html {font-size: 18px;}}
+            @media only screen and (max-width: 750px) {html {font-size: 16px;}}
+            @media only screen and (max-width: 540px) {html {font-size: 22px;}}
+            @media only screen and (max-width: 350px) {html {font-size: 18px;}}
+            h1, h2, h3 { margin-top: 1.2rem; margin-bottom: .9rem; } h4, h5, h6 { margin-top: .8rem; margin-bottom: .7rem; } blockquote { border: 0 solid #000; } h1 { font-size: 3.5rem; } h2 { font-size: 2.6rem; } h3 { font-size: 2rem; } h4 { font-size: 1.5rem; } h5 { font-size: 1rem; } h6 { font-size: .9rem; } br { margin: .5rem 0; content: ""; display: block } p > code { background-color: #ddd; padding: .1rem .2rem; color: #faa; } code, th, li, td { font-size: 1rem; } .text2 { font-size: .8rem; margin: .2rem; color: var(--textsec); font-weight: 500; } hr { height: .05rem; margin: 1.25rem .2rem; border-width: 0; background-color: var(--faint); } img { width: 100%; } ul, ol { margin-left: 1rem; } a { text-decoration: none; list-style-type: none; } blockquote { margin: 1rem 0; padding-left: 1rem; border-left-width: 4px; border-left-color: var(--faint); } blockquote > blockquote { margin: .2rem 0; } blockquote > p { padding: .25rem 0; } li { margin: .55rem 0; margin-left: 1rem; } li > p { padding: 0; } pre { border-radius: .2rem; background-color: #404145; border-radius: .2rem; padding: .5rem 1rem; margin: .5rem 0; } code { font-weight: 400; color: #FAFAFA; line-height: 1.4rem; font-family: Inconsolata, Consolas, Courier, "Courier New", "Liberation Mono", monospace; font-size: 0.9em; white-space: pre-wrap; }
+            tr:nth-child(even) { background: var(--surface2); } th { padding-bottom: 4px; } td { border-top: none; }
+            @media only screen and (max-width: 540px) {
+            h1 { font-size: 2rem; } h2 { font-size: 1.8rem; } h3 { font-size: 1.6rem; } h4 { font-size: 1.3rem; } h5 { font-size: 1rem; } h6 { font-size: .8rem; }}
+            body, html{overflow-wrap:break-word;word-break:break-word;word-wrap:break-word;min-height: 100vh;width:100vw;font-family: Lato, Helvetica, sans-serif;font-family--webkit-font-smoothing: antialiased;color:var(--text1);width:100%;overflow:hidden}
+            svg{color:var(--text1);}
+            a{text-decoration: none;transition: 0.5s;color: inherit;}
+            a:visited {color: inherit;}
+            a:hover{opacity:.7}
+            #appbar{position:sticky;top:0;z-index:2;transition:.3s}
+            #Header1 h1,.title{margin: 0;font-size: 1.3rem;font-weight:400;color:var(--text2);white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+            #Header1 p{margin: 0;font-size: .7rem;margin-top: .2rem;color:var(--text2);}
+            #book_grid{padding: 1rem;display: grid;grid-column-gap: 1rem;grid-row-gap: 1rem;grid-auto-columns: 1fr 1fr;grid-template-columns: 1fr 1fr 1fr;grid-template-rows: auto;}
+            #Text1{padding: 1.5rem 0;border-bottom: .07rem solid var(--faint);align-items:center}
+            #blog-pager{display: flex;justify-content: space-evenly;}
+            #Text1>h3{font-size:2rem}
+            #sidebar_content h3{display:none}
+            #Header1{width:100%}
+            #appbar_start{max-width: calc(100vw - 16rem);}
+            #sidebar_content li , #sidebar_content ul {list-style:none; margin:0}
+            #sidebar_content a{font-size:1.2rem;display:block;padding: 1rem 1.5rem;text-transform:uppercase;font-weight:400;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+            .mainmargin{margin-left:var(--sidebarwidth);margin-right:var(--sidebarwidth); }
+            .mainc{height: 100vh;overflow: auto;}
+            #BlogSearch1 .search-input>input{color:var(--text2);width: 100%;height: 100%;text-align: center;border: none;background-color: transparent;font-size:1rem;font-weight:bold;font-size:1rem;}
+            #BlogSearch1 .search-action{min-width:10rem;height: 2rem;border: none;background-color: var(--surface2);color: var(--text2);font-size: .8rem;text-transform: uppercase;margin: 0 1rem;}
+            #sidebar-main{position:absolute;height:100%;width:var(--sidebarwidth);left:0;top:0;background-color:var(--surface2);z-index:4;margin-left:calc(-1 * var(--sidebarwidth));transition:.3s;border-right:.02rem solid var(--faint);}
+            #sidebar_content{height: calc(100vh - var(--appbar));overflow: auto;}
+            #scrolltop{width:2rem;height:2rem;position:absolute;bottom:0;right:0;margin:1rem 2rem;z-index:3;}
+            .BlogSearch > h3, #Translate1 > h3, .skiptranslate>span {display:none;}
+            .Image{background-color: var(--surface);border: .05rem solid var(--faint);border-radius: 1rem;overflow:hidden;}
+            .Image>a{display:block;}
+            .Image>a>img{height: 12rem;object-fit: cover;}
+            .Image>a>div>h4,.nomargin{margin:0!important;}
+            .Image>a>div>p{margin:.5rem 0;}
+            .Image>a>div{padding:.5rem 1rem;}
+            .Image>a>div>div{display:inline-block;}
+            .post{background-color: var(--surface2);padding: 1rem;border-radius: 1rem;position:relative;margin-bottom:1rem;}
+            .post-header{position: absolute;top: 0.7rem;}
+            .snippet-thumbnail{height:8rem;width:8rem;overflow: hidden;object-fit: cover;float:right;border-radius: 1rem;margin-left: 1rem;display:block;}
+            .hide{display:none;}
+            .w100{width:100%;}
+            .h100{height:100%;}
+            .p8,#Text1>div, #Text1>h3{padding: .5rem;}
+            .mr8{margin-right: .5rem;}
+            .fill, #Text1>div, #Text1>h3, .search-input{flex:1;}
+            .barheight{min-height:var(--appbar);}
+            .column, body{flex-direction:column;display:flex;}
+            .row, #Text1, #BlogSearch1>div>form{flex-direction:row;display:flex;}
+            .bdb{border-bottom:0.02rem solid var(--faint);}
+            .surface, html{background-color:var(--surface);}
+            .header-image-wrapper, .header-image-wrapper > img {height:2.5rem;}
+            .alc {align-items: center;}
+            .blogger-clickTrap {display: none!important;}
+            .b_reg{min-width:2rem;height:2rem;display:flex;justify-content:center;align-items:center;}
+            .i_reg{width:1rem;height:1rem;}
+            .pnt, a {cursor: pointer;}
+            .fade:hover{opacity: .6;}
+            .hover:hover{background-color: var(--hover);}
+            .round{border-radius:50%;}
+            .pad{padding:2.5rem 2rem;}
+            .post-body{text-align:justify;min-height:4.2rem}
+            .post-footer{color:var(--text2);}
+            .post-count{opacity:.5; padding:0 .5rem}
+            .jump-link>a{padding-top: 0.8rem;padding-bottom:.3rem;display: block;}
+            .timestamp-link{font-size:.8rem;font-weight:400;}
+            .post-footer-line-1{display:none;}
+            .post-footer-line-2{color:var(--text1);min-height: .7rem;padding-top:.5rem}
+            .skiptranslate{font-size:0!important;}
+            .g-profile, .published, .jump-link {font-weight:600; color:var(--primary);}
+            .sbar{position:absolute;top:0;background-color:var(--surface);margin-top:calc(var(--appbar) * -1);transition:.3s;}
+            .nobar{opacity:0;pointer-events:none;}
+            .float-container{margin-bottom:1rem;}
+            .post-labels > a {margin-right: .5rem; font-weight:bold;border: 0.1rem solid var(--faint);border-radius: 1rem;padding: 0.2rem 0.5rem;}
+            .blogger{display:none;}
+            .copyright{text-align:center;opacity:.8;font-size:.5rem;text-transform:uppercase;padding:1rem 0;}
+            @media only screen and (max-width: 1508px) {.mainmargin{margin-right:calc(100vw - 68rem);}}
+            @media only screen and (max-width: 1204px) {.mainmargin{margin-right:0;margin-left:calc(100vw - 51rem);}}
+            @media only screen and (max-width: 1024px) {.mainmargin{margin:0;} #book_grid{grid-template-columns: 1fr 1fr;}}
+            @media only screen and (max-width: 540px) {#book_grid{grid-template-columns: 1fr;} #Text1{flex-direction:column;} .pad{padding:1rem;} #BlogSearch1 .search-action{min-width:unset;}}
+            @media only screen and (max-width: 490px) {:root{--appbar:3rem;--sidebarwidth:100vw;} #Header1{z-index: -1;position: absolute;bottom: 0.2rem;left: 0;right: 0;text-align: center;} #Header1 h1{font-size:.7rem;} .prefill{flex:1} .snippet-thumbnail{width:auto;float:unset;margin-left:0;margin-bottom:.5rem;}}
+            @media only screen and (max-width: 350px) {#BlogSearch1 .search-action{margin: 0 0.4rem;}}
+        ]]>
+    </b:skin>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <b:defaultmarkups>
+        <b:defaultmarkup type='Common'>
+            <b:includable id='IconButton'>
+                <div expr:onclick="data:onclick" class="b_reg pnt hover round">
+                    <i expr:data-feather="data:icon" class="i_reg"></i>
+                </div>
+            </b:includable>
+        </b:defaultmarkup>
+        <b:defaultmarkup type='Blog'>
+            <b:includable id='postBodySnippet' var='post'>
+                <div class='container post-body entry-content' expr:id='"post-snippet-" + data:post.id'>
+                    <b:if cond='data:post.featuredImage'>
+                        <a class='snippet-thumbnail' expr:href='data:post.url'>
+                            <b:include data='{image: data:post.featuredImage,imageSizes: [32, 64, 128, 256],imageRatio: "1:1",sourceSizes: "(max-width: 800px) 20vw, 128px"}' name='responsiveImage' />
+                        </a>
+                    </b:if>
+                    <b:eval expr='snippet(data:post.body, { length: 350, linebreaks: false, links: false})' />
+                </div>
+            </b:includable>
+        </b:defaultmarkup>
+        <b:defaultmarkup type='Header'>
+            <b:includable id='description'>
+                <div id="head-2">
+                    <b:class cond='data:description == &quot;&quot;' name='hide' />
+                    <b:include name='super.description' />
+                </div>
+            </b:includable>
+        </b:defaultmarkup>
+        <b:defaultmarkup type='Image'>
+            <b:includable id='main'>
+                <a expr:href="data:link">
+                    <img expr:src="data:sourceUrl" loading="lazy" />
+                    <div>
+                        <h4><i data-feather="book-open" class="i_reg mr8"></i>
+                            <data:title />
+                        </h4>
+                        <p>
+                            <data:caption />
+                        </p>
+                    </div>
+                </a>
+            </b:includable>
+        </b:defaultmarkup>
+    </b:defaultmarkups>
+    <div id="sidebar-main">
+        <div class="barheight w100 bdb row alc p8 surface">
+            <b:include data='{ icon: "x", onclick: "hidemenu()" }' name='IconButton' />
+            <div class="mr8" />
+            <p class="title"><data:messages.showLess /></p>
+        </div>
+        <b:section id="sidebar_content" showaddelement="yes">
+            <b:widget id="LinkList1" locked="true" title="navigation" type="LinkList" visible='true' />
+        </b:section>
+    </div>
+    <div id="scrolltop" class="surface round">
+        <b:include data='{ icon: "arrow-up", onclick: "totop()" }' name='IconButton' />
+    </div>
+    <div class="mainc" id="scrollcontainer">
+        <div class="barheight w100 bdb row alc surface" id="appbar">
+            <div class="sbar w100 h100 row alc" id="topsearch">
+                <div class="mr8" />
+                <b:include data='{ icon: "x", onclick: "hidesearch()" }' name='IconButton' />
+                <div class="mr8" />
+                <b:section id='abbpar_search' showaddelement='false' class="fill">
+                    <b:widget id="BlogSearch1" locked="true" title="head_title" type="BlogSearch" visible='true' />
+                </b:section>
+            </div>
+            <div class="mr8" />
+            <b:include data='{ icon: "menu", onclick: "showmenu()" }' name='IconButton' />
+            <div class="mr8" />
+            <b:section class='alc column' id='appbar_start' showaddelement='false'>
+                <b:widget id="Header1" locked="true" title="head_title" type="Header" visible='true' />
+            </b:section>
+            <div class="fill" />
+            <b:section id="appbar_end" showaddelement='false' class="mr8">
+                <b:widget id="Translate1" locked="true" type="Translate" />
+            </b:section>
+            <div class="prefill" />
+            <b:include data='{ icon: "search", onclick: "showsearch()" }' name='IconButton' />
+            <div class="mr8" />
+        </div>
+        <div class="fill pad mainmargin">
+            <b:if cond='data:blog.url == data:blog.homepageUrl'>
+                <b:section id="site_description" showaddelement='false'>
+                    <b:widget id="Text1" locked="true" type="Text" />
+                </b:section>
+                <b:section id="book_grid" showaddelement="yes">
+                    <b:widget id="Image1" locked="true" title="Add images in here" type="Image" />
+                </b:section>
+            </b:if>
+            <b:if cond='data:view.isHomepage'>
+                <h4>
+                    <data:messages.recentPosts />
+                </h4>
+                <b:elseif cond='data:view.isSearch and not data:view.isLabelSearch' />
+                <h4>
+                    <data:view.search.resultsMessage />
+                </h4>
+                <b:elseif cond='data:view.isLabelSearch' />
+                <h4>
+                    <data:view.search.label />
+                </h4>
+                <b:elseif cond='data:view.isArchive' />
+                <h4>
+                    <data:messages.archive />:
+                    <data:view.archive.day />-
+                    <data:view.archive.month />-
+                    <data:view.archive.year />
+                </h4>
+            </b:if>
+            <div id="wcontent">
+                <b:section id="main_content" class="main" showaddelement="yes">
+                    <b:widget id="Blog1" locked="true" title="posts" type="Blog">
+                        <b:includable id='postPagination'>
+                            <div class='blog-pager container' id='blog-pager'>
+                                <b:include cond='data:olderPageUrl' name='nextPageLink' />
+                                <b:include cond='data:view.url != data:blog.homepageUrl' name='homePageLink' />
+                                <b:include cond='data:newerPageUrl' name='previousPageLink' />
+                            </div>
+                        </b:includable>
+                    </b:widget>
+                </b:section>
+            </div>
+            <div id="wfooter">
+                <b:section id="footer" class="footer" showaddelement="false">
+                    <b:widget  id='Attribution1' locked='true' title='' type='Attribution' visible='true'/>
+                </b:section>
+            </div>
+        </div>
+    </div>
+    <script>
+    feather.replace()
+    var prevscroll = 0
+    var byId = (id) => document.getElementById(id);
+    var gtCl = (id) => byId(id).classList;
+    var showsearch = () => {
+        gtCl("topsearch").add("nomargin");
+        hidemenu();
+        document.getElementsByName("q")[0].focus()
+    }
+    var hidesearch = () => {
+        gtCl("topsearch").remove("nomargin");
+        document.getElementsByName("q")[0].blur()
+    }
+    var showmenu = () => {
+        gtCl("sidebar-main").add("nomargin");
+        hidesearch()
+    }
+    var hidemenu = () => gtCl("sidebar-main").remove("nomargin");
+    var abcheck = (up) => up ? gtCl("appbar").remove("nobar") : (gtCl("appbar").add("nobar") || hidesearch());
+
+    function logic(w) {
+        let st = byId("scrollcontainer").scrollTop;
+        let up = st &#60; prevscroll;
+        abcheck(up);
+        prevscroll= st
+    }
+    var totop = () => byId("scrollcontainer")?.scrollTo(0, 1);
+    document.addEventListener("DOMContentLoaded", function() {
+        byId("scrollcontainer")?.addEventListener('scroll', logic)
+    });
+    </script>
+</body>
+
+</html>
