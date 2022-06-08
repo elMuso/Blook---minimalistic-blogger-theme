@@ -47,7 +47,7 @@
             #Text1>h3{font-size:2rem}
             #sidebar_content h3{display:none}
             #Header1{width:100%}
-            #appbar_start{max-width: calc(100vw - 16rem);}
+            #appbar_start{max-width: calc(100vw - 8rem);}
             #sidebar_content li , #sidebar_content ul {list-style:none; margin:0}
             #sidebar_content a{font-size:1.2rem;display:block;padding: 1rem 1.5rem;text-transform:uppercase;font-weight:400;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
             #comment-editor{border-radius:1rem;}
@@ -58,7 +58,7 @@
             #scrolltop{width:2rem;height:2rem;position:absolute;bottom:0;right:0;margin:1rem 2rem;z-index:3;}
             .mainmargin{margin-left:var(--sidebarwidth);margin-right:var(--sidebarwidth); }
             .mainc{height: 100vh;overflow: auto;}
-            .BlogSearch > h3, #Translate1 > h3, .skiptranslate>span {display:none;}
+            .BlogSearch > h3, #Translate1 > h3 {display:none;}
             .Image{background-color: var(--surface);border: .05rem solid var(--faint);border-radius: 1rem;overflow:hidden;}
             .Image>a{display:block;}
             .Image>a>img{height: 12rem;object-fit: cover;}
@@ -102,7 +102,6 @@
             .jump-link>a{padding-top: 0.8rem;padding-bottom:.3rem;display: block;}
             .post-footer-line-1{display:none;}
             .post-footer-line-2{color:var(--text1);min-height: .7rem;padding-top:.5rem}
-            .skiptranslate{font-size:0!important;}
             .g-profile, .published, .jump-link {font-weight:600; color:var(--primary);}
             .sbar{position:absolute;top:0;background-color:var(--surface);margin-top:calc(var(--appbar) * -1);transition:.3s;}
             .nobar{opacity:0;pointer-events:none;}
@@ -115,14 +114,17 @@
             .postformat>.post-header{padding:1rem;padding-top:0;}
             .postformat>h3,.postformat>.post-header{text-align:center;}
             .fwrap{padding: 1rem;padding-top: 0;}
+            .nofill svg{fill:unset!important}
             .postgrid{display: grid;grid-column-gap: 1rem;grid-row-gap: 1rem;grid-auto-columns: 1fr 1fr;grid-template-columns: 1fr 1fr;grid-template-rows: auto;}
             .copyright{text-align:center;opacity:.8;font-size:.5rem;text-transform:uppercase;padding:1rem 0;}
+            .post-share-buttons ul,.post-share-buttons li{margin: 0;list-style:none;}
+            .post-share-buttons svg{width:1rem;height:1rem;fill:var(--text3)}
             @media only screen and (max-width: 1508px) {.mainmargin{margin-right:calc(100vw - 68rem);}}
             @media only screen and (max-width: 1204px) {.mainmargin{margin-right:0;margin-left:calc(100vw - 51rem);}}
             @media only screen and (max-width: 1024px) {.mainmargin{margin:0;} #book_grid{grid-template-columns: 1fr 1fr;}}
             @media only screen and (max-width: 790px) {.postgrid{grid-template-columns: 1fr;}}
             @media only screen and (max-width: 540px) {#Header1 p{display:none;} #book_grid{grid-template-columns: 1fr;} #Text1{flex-direction:column;} .pad{padding:1rem;} #BlogSearch1 .search-action{min-width:unset;}}
-            @media only screen and (max-width: 490px) {:root{--appbar:3rem;--sidebarwidth:100vw;} #Header1{z-index: -1;position: absolute;bottom: 0.2rem;left: 0;right: 0;text-align: center;} #Header1 h1{font-size:.7rem;} .prefill{flex:1} .snippet-thumbnail{width:auto;float:unset;margin-left:0;margin-bottom:.5rem;}}
+            @media only screen and (max-width: 490px) {:root{--appbar:3rem;--sidebarwidth:100vw;} .snippet-thumbnail{width:auto;float:unset;margin-left:0;margin-bottom:.5rem;}}
             @media only screen and (max-width: 350px) {#BlogSearch1 .search-action{margin: 0 0.4rem;}}
         ]]>
 	</b:skin>
@@ -143,6 +145,31 @@
 		</b:defaultmarkup>
 
 		<b:defaultmarkup type='Blog'>
+			<b:includable id="sharingButtonContent"/>
+			<b:includable id="sharingButtonsMenu"/>
+			<b:includable id="sharingButtons"/>
+			<b:includable id="otherSharingButton"/>
+			<b:includable id="sharingButton"/>
+			<b:includable id="sharingPlatformIcon"/>
+			<b:includable id='postShareButtons'>
+					<b:if cond='data:view.isSingleItem'>
+				<div class='byline post-share-buttons'>
+					<b:with value='data:sharingId ?: ((data:widget.instanceId ?: &quot;sharing&quot;) + &quot;-&quot; + (data:regionName ?: &quot;byline&quot;) + &quot;-&quot; + data:post.id)' var='sharingId'>
+					<a href='javascript: navigator.share({title: window.document.title , url: window.location.href})'><b:include name='shareIcon'/></a>
+					<b:loop values='(data:platforms ?: data:blog.sharing.platforms) filter (p =&gt; p.key not in {&quot;blogThis&quot;})' var='platform'>
+						<b:if cond='data:platform.target != &quot;&quot;'>
+						<a expr:aria-label='data:platform.shareMessage' expr:class='&quot;sharing-platform-button sharing-element-&quot; + data:platform.key' expr:href='data:shareUrl + &quot;&amp;target=&quot; + data:platform.target' expr:data-url='data:originalUrl' expr:title='data:platform.shareMessage'>
+    						<b:include data='{ iconClass: (&quot;touch-icon sharing-&quot; + data:platform.key) }' expr:name='data:platform.key + &quot;Icon&quot;'/>
+  						</a>
+  					</b:if>
+					</b:loop>
+					<a aria-label='link' href='javascript:navigator.clipboard.writeText(window.location.href)' class="nofill">
+    						<i data-feather="link-2" class="i_reg"/>
+  					</a>
+					</b:with>
+				</div>
+				</b:if>
+			</b:includable>
 			<b:includable id='main' var='this'>
 				<div class='blog-posts hfeed container'>
 					<b:class cond='data:blog.url == data:blog.homepageUrl' name='postgrid' />
@@ -194,6 +221,7 @@
 					<b:include name='super.description' />
 				</div>
 			</b:includable>
+			<b:includable id='Translate'/>
 		</b:defaultmarkup>
 		<b:defaultmarkup type='Image'>
 			<b:includable id='main'>
@@ -243,10 +271,6 @@
 				<b:widget id="Header1" locked="true" title="head_title" type="Header" visible='true' />
 			</b:section>
 			<div class="fill" />
-			<b:section id="appbar_end" showaddelement='false' class="mr8">
-				<b:widget id="Translate1" locked="true" type="Translate" />
-			</b:section>
-			<div class="prefill" />
 			<b:include data='{ icon: "search", onclick: "showsearch()" }' name='IconButton' />
 			<div class="mr8" />
 		</div>
@@ -304,6 +328,7 @@
     var prevscroll = 0
     var byId = (id) => document.getElementById(id);
     var gtCl = (id) => byId(id).classList;
+    var shareurl = () => navigator.share({title: 'MDN',text: 'Learn web development on MDN!',url: 'https://developer.mozilla.org'})
     var showsearch = () => {
         gtCl("topsearch").add("nomargin");
         hidemenu();
