@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.3' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 
 <head>
 	<meta charset="utf-8" />
@@ -106,8 +106,9 @@
             .sbar{position:absolute;top:0;background-color:var(--surface);margin-top:calc(var(--appbar) * -1);transition:.3s;}
             .nobar{opacity:0;pointer-events:none;}
             .float-container{margin-bottom:1rem;}
-            .post-labels > a {margin-right: .5rem; font-weight:bold;border: 0.1rem solid var(--faint);border-radius: 1rem;padding: 0.2rem 0.5rem;display:inline-block;margin-top: 0.5rem;}
-            .blogger{display:none;}
+            .post-labels > a , .inlinebutton {margin-right: .5rem; font-weight:bold;border: 0.1rem solid var(--faint);border-radius: 1rem;padding: 0.2rem 0.5rem;display:inline-block;margin-top: 0.5rem;}
+            .inlinebutton{margin:.5rem}
+            .blogger, .PopularPosts .title{display:none;}
             .postformat{line-height:1.5;background-color:unset;border-radius:unset;}
             .postformat img{margin-bottom:1.5rem;border-radius: 1rem;}
             .postformat>h3{padding:2rem,1rem; padding-bottom:0;font-size:3rem;}
@@ -115,14 +116,16 @@
             .postformat>h3,.postformat>.post-header{text-align:center;}
             .fwrap{padding: 1rem;padding-top: 0;}
             .nofill svg{fill:unset!important}
-            .postgrid{display: grid;grid-column-gap: 1rem;grid-row-gap: 1rem;grid-auto-columns: 1fr 1fr;grid-template-columns: 1fr 1fr;grid-template-rows: auto;}
+            .PopularPosts .widget-content .post{margin:0}
+            .PopularPosts .widget-content h3 {font-size:1.2rem; margin:.5rem 1rem;white-space: nowrap;text-overflow: ellipsis;overflow: hidden; }
+            .postgrid, .PopularPosts .widget-content > div{display: grid;grid-column-gap: 1rem;grid-row-gap: 1rem;grid-auto-columns: 1fr 1fr;grid-template-columns: 1fr 1fr;grid-template-rows: auto;}
             .copyright{text-align:center;opacity:.8;font-size:.5rem;text-transform:uppercase;padding:1rem 0;}
             .post-share-buttons ul,.post-share-buttons li{margin: 0;list-style:none;}
             .post-share-buttons svg{width:1rem;height:1rem;fill:var(--text3)}
             @media only screen and (max-width: 1508px) {.mainmargin{margin-right:calc(100vw - 68rem);}}
             @media only screen and (max-width: 1204px) {.mainmargin{margin-right:0;margin-left:calc(100vw - 51rem);}}
             @media only screen and (max-width: 1024px) {.mainmargin{margin:0;} #book_grid{grid-template-columns: 1fr 1fr;}}
-            @media only screen and (max-width: 790px) {.postgrid{grid-template-columns: 1fr;}}
+            @media only screen and (max-width: 790px) {.postgrid, .PopularPosts .widget-content > div{grid-template-columns: 1fr;}}
             @media only screen and (max-width: 540px) {#Header1 p{display:none;} #book_grid{grid-template-columns: 1fr;} #Text1{flex-direction:column;} .pad{padding:1rem;} #BlogSearch1 .search-action{min-width:unset;}}
             @media only screen and (max-width: 490px) {:root{--appbar:3rem;--sidebarwidth:100vw;} .snippet-thumbnail{width:auto;float:unset;margin-left:0;margin-bottom:.5rem;}}
             @media only screen and (max-width: 350px) {#BlogSearch1 .search-action{margin: 0 0.4rem;}}
@@ -143,7 +146,18 @@
 				</div>
 			</b:includable>
 		</b:defaultmarkup>
-
+		<b:defaultmarkup type='PopularPosts'>
+			<b:includable id='title'/>
+          <b:includable id='main' var='this'>
+          	<b:if cond='data:view.isSingleItem'>
+          		<h3><data:messages.popularPostsFromThisBlog/></h3>
+          		<b:include name='super.main'/>
+      		</b:if>
+        </b:includable>
+			<b:includable id='snippetedPostContent'>
+          <b:include name='snippetedPostTitle'/>
+        </b:includable>
+		</b:defaultmarkup>
 		<b:defaultmarkup type='Blog'>
 			<b:includable id="sharingButtonContent"/>
 			<b:includable id="sharingButtonsMenu"/>
@@ -304,7 +318,7 @@
 				</h4>
 			</b:if>
 			<div id="wcontent">
-				<b:section id="main_content" class="main" showaddelement="yes">
+				<b:section id="main_content" class="main" showaddelement="false">
 					<b:widget id="Blog1" locked="true" title="posts" type="Blog">
 						<b:includable id='postPagination'>
 							<div class='blog-pager container' id='blog-pager'>
@@ -314,6 +328,7 @@
 							</div>
 						</b:includable>
 					</b:widget>
+					<b:widget id="PopularPosts1" locked="true" type="PopularPosts"/>
 				</b:section>
 			</div>
 			<div id="wfooter">
