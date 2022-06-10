@@ -192,6 +192,7 @@
 			<b:includable id='main' var='this'>
 				<div class='blog-posts hfeed container'>
 					<b:class cond='data:blog.url == data:blog.homepageUrl' name='postgrid' />
+                    <b:class cond='data:view.isArchive or data:view.isLabelSearch or data:view.isSearch' name='postgrid' />
 					<b:loop index='i' values='data:posts' var='post'>
 						<b:include data='post' name='postCommentsAndAd'/>
 					</b:loop>
@@ -267,7 +268,7 @@
 			</p>
 		</div>
 		<b:section id="sidebar_content" showaddelement="yes">
-			<b:widget id="LinkList1" locked="true" title="navigation" type="LinkList" visible='true' />
+			<b:widget id="PageList1" locked="true" title="navigation" type="PageList" visible='true' />
 		</b:section>
 	</div>
 	<div id="scrolltop" class="surface round">
