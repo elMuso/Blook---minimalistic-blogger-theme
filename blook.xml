@@ -33,7 +33,7 @@
             tr:nth-child(even) { background: var(--surface2); } th { padding-bottom: 4px; } td { border-top: none; }
             @media only screen and (max-width: 540px) {
             h1 { font-size: 2rem; } h2 { font-size: 1.8rem; } h3 { font-size: 1.6rem; } h4 { font-size: 1.3rem; } h5 { font-size: 1rem; } h6 { font-size: .8rem; }}
-            body, html{overflow-wrap:break-word;word-break:break-word;word-wrap:break-word;min-height: 100vh;width:100vw;font-family: 'Open Sans',sans-serif, Helvetica, sans-serif;font-family--webkit-font-smoothing: antialiased;color:var(--text1);;overflow:hidden;letter-spacing: .024em;word-spacing: 0.02em;}
+            body, html{overflow-wrap:break-word;word-break:break-word;word-wrap:break-word;min-height: 100%;width:100%;font-family: 'Open Sans',sans-serif, Helvetica, sans-serif;font-family--webkit-font-smoothing: antialiased;color:var(--text1);;overflow:initial;letter-spacing: .024em;word-spacing: 0.02em;}
             svg{color:var(--text1);}
             a{text-decoration: none;-webkit-transition: 0.5s;-o-transition: 0.5s;transition: 0.5s;color: inherit;}
             a:visited {color: inherit;}
@@ -56,11 +56,10 @@
             #comment-editor{border-radius:1rem;}
             #BlogSearch1 .search-input>input{color:var(--text2);width: 100%;height: 100%;text-align: center;border: none;background-color: transparent;font-size:1rem;font-weight:bold;font-size:1rem;}
             #BlogSearch1 .search-action{min-width:10rem;height: 2rem;border: none;background-color: var(--surface2);color: var(--text2);font-size: .8rem;text-transform: uppercase;margin: 0 1rem;}
-            #sidebar-main{position:absolute;height:100%;width:var(--sidebarwidth);left:0;top:0;background-color:var(--surface2);z-index:4;margin-left:calc(-1 * var(--sidebarwidth));-webkit-transition:.3s;-o-transition:.3s;transition:.3s;border-right:.02rem solid var(--faint);}
+            #sidebar-main{position:fixed;height:100%;width:var(--sidebarwidth);left:0;top:0;background-color:var(--surface2);z-index:4;margin-left:calc(-1 * var(--sidebarwidth));-webkit-transition:.3s;-o-transition:.3s;transition:.3s;border-right:.02rem solid var(--faint);}
             #sidebar_content{height: calc(100vh - var(--appbar));overflow: auto;}
-            #scrolltop{width:2rem;height:2rem;position:absolute;bottom:0;right:0;margin:1rem 2rem;z-index:3;}
+            #scrolltop{width:2rem;height:2rem;position:fixed;bottom:0;right:0;margin:1rem 2rem;z-index:3;}
             .mainmargin{margin-left:var(--sidebarwidth);margin-right:var(--sidebarwidth); }
-            .mainc{height: 100vh;overflow: auto;}
             .BlogSearch > h3, #Translate1 > h3 {display:none;}
             .Image{background-color: var(--surface);border: .05rem solid var(--faint);border-radius: 1rem;overflow:hidden;}
             .Image>a{display:block;}
@@ -127,6 +126,7 @@
             .copyright{text-align:center;opacity:.8;font-size:.5rem;text-transform:uppercase;padding:1rem 0;}
             .post-share-buttons ul,.post-share-buttons li{margin: 0;list-style:none;}
             .post-share-buttons svg{width:1rem;height:1rem;fill:var(--text3)}
+            @media print {#appbar, #scrolltop, #sidebar-main, .post-footer, .comments, .post-feeds, .blog-feeds, .PopularPosts{display:none} .mainmargin{margin:0} .pad{padding:0 1rem} body{text-align:justify}}
             @media only screen and (max-width: 1508px) {.mainmargin{margin-right:calc(100vw - 68rem);}}
             @media only screen and (max-width: 1204px) {.mainmargin{margin-right:0;margin-left:calc(100vw - 51rem);}}
             @media only screen and (max-width: 1024px) {.mainmargin{margin:0;} #book_grid{-ms-grid-columns: 1fr 1fr;grid-template-columns: 1fr 1fr;}}
@@ -366,14 +366,14 @@
     var abcheck = (up) => up ? gtCl("appbar").remove("nobar") : (gtCl("appbar").add("nobar") || hidesearch());
 
     function logic(w) {
-        let st = byId("scrollcontainer").scrollTop;
+        let st = document.documentElement.scrollTop || document.body.scrollTop;
         let up = st &#60; prevscroll;
         abcheck(up);
         prevscroll= st
     }
-    var totop = () => byId("scrollcontainer")?.scrollTo(0, 1);
+    var totop = () => window?.scrollTo(0, 1);
     document.addEventListener("DOMContentLoaded", function() {
-        byId("scrollcontainer")?.addEventListener('scroll', logic)
+        window?.addEventListener('scroll', logic)
     });
 	</script>
 </body>
