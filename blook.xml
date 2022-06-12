@@ -118,22 +118,25 @@
             .postformat>h3,.postformat>.post-header{text-align:center;}
             .fwrap{padding: 1rem;padding-top: 0;}
             .nofill svg{fill:unset!important}
-            .PopularPosts .widget-content .post{margin:0}
+            .PopularPosts > .widget-content .post{margin:0}
             .author-profile{background-color: var(--surface2);padding: 1rem;border-radius: 1rem;}
-            .PopularPosts .widget-content h3 {font-size:1.2rem; margin:.5rem 1rem;white-space: nowrap;-o-text-overflow: ellipsis;text-overflow: ellipsis;overflow: hidden; }
-            .postgrid, .PopularPosts .widget-content > div{display: -ms-grid;display: grid;grid-column-gap: 1rem;grid-row-gap: 1rem;grid-auto-columns: 1fr 1fr;-ms-grid-columns: 1fr 1rem 1fr;grid-template-columns: 1fr 1fr;-ms-grid-rows: auto;grid-template-rows: auto;}
-            .postgrid > *:nth-child(1), .PopularPosts .widget-content > div > *:nth-child(1){-ms-grid-row:1;-ms-grid-column:1;}
-            .postgrid > *:nth-child(2), .PopularPosts .widget-content > div > *:nth-child(2){-ms-grid-row:1;-ms-grid-column:3;}
+            .PopularPosts > .widget-content h3 {font-size:1.2rem; margin:.5rem 1rem;white-space: nowrap;-o-text-overflow: ellipsis;text-overflow: ellipsis;overflow: hidden; }
+            .PopularPosts{margin-bottom:1rem;}
+            .separator>a>img{max-height:24rem;object-fit:cover}
+            .postgrid, .PopularPosts> .widget-content > div{display: -ms-grid;display: grid;grid-column-gap: 1rem;grid-row-gap: 1rem;grid-auto-columns: 1fr 1fr;-ms-grid-columns: 1fr 1rem 1fr;grid-template-columns: 1fr 1fr;-ms-grid-rows: auto;grid-template-rows: auto;}
             .copyright{text-align:center;opacity:.8;font-size:.5rem;text-transform:uppercase;padding:1rem 0;}
             .post-share-buttons ul,.post-share-buttons li{margin: 0;list-style:none;}
             .post-share-buttons svg{width:1rem;height:1rem;fill:var(--text3)}
             .bred{border-color:red} .bgreen{border-color:green} .byellow{border-color:yellow} .bblue{border-color:aqua}
-            @media print {#appbar, #scrolltop,#LinkList1, #sidebar-main, .post-footer, .post-header, .comments, .post-feeds, .blog-feeds, .PopularPosts{display:none} .mainmargin{margin:0} .pad{padding:0 1rem} body{text-align:justify}}
+            .imgl, .imgr{height: 12rem;display: inline-block;width: unset;margin:.5rem 1rem}
+            .imgl{float: left;} .imgr{float: right;}
+            .imgl>img, .imgr>img{height:100%; margin:0; width: unset}
+            @media print {#appbar,#botns, #scrolltop,#LinkList1, #sidebar-main, .post-footer, .post-header, .comments, .post-feeds, .blog-feeds, .PopularPosts{display:none} .mainmargin{margin:0} .pad{padding:0 1rem} body{text-align:justify} h1, h2, h3, h4, h5, h6{text-align:left}}
             @media only screen and (max-width: 1508px) {.mainmargin{margin-right:calc(100vw - 68rem);}}
             @media only screen and (max-width: 1204px) {.mainmargin{margin-right:0;margin-left:calc(100vw - 51rem);}}
             @media only screen and (max-width: 1024px) {.mainmargin{margin:0;} #book_grid{-ms-grid-columns: 1fr 1fr;grid-template-columns: 1fr 1fr;}}
             @media only screen and (max-width: 790px) {.postgrid, .PopularPosts .widget-content > div{-ms-grid-columns: 1fr;grid-template-columns: 1fr;}}
-            @media only screen and (max-width: 540px) {#Header1 p{display:none;} #book_grid{-ms-grid-columns: 1fr;grid-template-columns: 1fr;} #Text1{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;} .pad{padding:1rem;} #BlogSearch1 .search-action{min-width:unset;} .postformat>h3{font-size: 2rem;}}
+            @media only screen and (max-width: 540px) {.imgl, .imgr{float:none; height:10rem; display:block;margin:0;margin-bottom:1rem;}.imgl>img, .imgr>img{object-fit: cover;width:100%} #Header1 p{display:none;} #book_grid{-ms-grid-columns: 1fr;grid-template-columns: 1fr;} #Text1{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;} .pad{padding:1rem;} #BlogSearch1 .search-action{min-width:unset;} .postformat>h3{font-size: 2rem;}}
             @media only screen and (max-width: 490px) {:root{--appbar:3rem;--sidebarwidth:100vw;} .snippet-thumbnail{width:auto;float:unset;margin-left:0;margin-bottom:.5rem;}}
             @media only screen and (max-width: 350px) {#BlogSearch1 .search-action{margin: 0 0.4rem;}}
         ]]>
